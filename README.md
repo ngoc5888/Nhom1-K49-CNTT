@@ -64,7 +64,7 @@ Hệ thống cho phép quản lý người dùng, khóa học, môn học, kết
 | STT | Họ và tên          | Vai trò                 | Branch           |
 | --- | ------------       | ----------------------- | ---------------- |
 | 1   | Nguyễn Bảo Ngọc    | Nhóm trưởng / Backend   | feature/backend  |
-| 2   | Hoàng Anh Tuấnn | Frontend                | feature/frontend |
+| 2   | Hoàng Anh Tuấn | Frontend                | feature/frontend |
 | 3   | Nguyễn Thu Hà      | Database                | feature/database |
 | 4   | Nguyễn Trang Nhung | Testing / Documentation | feature/testing  |
 | 5   | Khuất Duy Hải      | Testing / Documentation | feature/testing  |
@@ -74,7 +74,7 @@ Hệ thống cho phép quản lý người dùng, khóa học, môn học, kết
 | Thành viên         | Công việc                                        |
 | ------------       | ------------------------------------------------ |
 | Nguyễn Bảo Ngọc    | Quản lý dự án, Backend, tích hợp hệ thống        |
-| Hoàng Anh Tuấnn | Thiết kế giao diện và Frontend                   |
+| Hoàng Anh Tuấn | Thiết kế giao diện và Frontend                   |
 | Nguyễn Thu Hà      | Phân tích và thiết kế cơ sở dữ liệu              |
 | Nguyễn Trang Nhung | Kiểm thử, tài liệu và hỗ trợ hoàn thiện hệ thống |
 | Khuất Duy Hải      | Kiểm thử, tài liệu và hỗ trợ hoàn thiện hệ thống |
