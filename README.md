@@ -74,7 +74,7 @@ Hệ thống cho phép quản lý người dùng, khóa học, môn học, kết
 | Thành viên         | Công việc                                        |
 | ------------       | ------------------------------------------------ |
 | Nguyễn Bảo Ngọc    | Quản lý dự án, Backend, tích hợp hệ thống        |
-| Hoàng Anh Tuấn     | Thiết kế giao diện và Frontend                   |
+| Hoàng Anh Tuấn    | Thiết kế giao diện và Frontend                   |
 | Nguyễn Thu Hà      | Phân tích và thiết kế cơ sở dữ liệu              |
 | Nguyễn Trang Nhung | Kiểm thử, tài liệu và hỗ trợ hoàn thiện hệ thống |
 | Khuất Duy Hải      | Kiểm thử, tài liệu và hỗ trợ hoàn thiện hệ thống |
