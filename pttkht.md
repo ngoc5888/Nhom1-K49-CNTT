@@ -1,4 +1,4 @@
-## 1. Khảo sát và xác định yêu cầu
+## Phần 1: Khảo sát và xác định yêu cầu
 Bảng mô tả bài toán
 |Tiêu chí               |    Nội dung mô tả                                                                                                   |
 |Bối cảnh               |    Nhu cầu tổ chức và tham gia học tập trên môi trường trực tuyến cho nhà trường, giảng viên và sinh viên.          |
