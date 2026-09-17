@@ -131,29 +131,33 @@ Quá trình kiểm thử được thực hiện để đảm bảo tính ổn đ
 ### 4.4. Hướng phát triển
 * Nâng cấp hệ thống lưu trữ đám mây (Cloud Storage) để tối ưu băng thông tải video bài giảng.
 * Tích hợp tính năng phòng học trực tuyến (Video Call) để tăng tính tương tác.
-3. THIẾT KẾ GIAO DIỆN
-3.1. Mục tiêu
+#### 3. THIẾT KẾ GIAO DIỆN
+
+## 3.1. Mục tiêu
 
 Thiết kế giao diện hệ thống quản lý học tập đơn giản, dễ sử dụng và phù hợp với từng nhóm người dùng.
 
 Hệ thống gồm 3 nhóm người dùng:
 
-👨‍🎓 Sinh viên
+- 👨‍🎓 Sinh viên
+- 👨‍🏫 Giảng viên
+- 👨‍💼 Quản trị viên
 
-👨‍🏫 Giảng viên
+---
 
-👨‍💼 Quản trị viên
+## 3.2. Giao diện đăng nhập
 
-3.2. Giao diện đăng nhập
+Người dùng nhập:
 
-Người dùng nhập tên đăng nhập và mật khẩu.
+- Tên đăng nhập
+- Mật khẩu
 
-Các chức năng:
+Chức năng:
 
-Đăng nhập
+- Đăng nhập
+- Quên mật khẩu
 
-Quên mật khẩu
-
+```text
 +---------------------------------+
 |       🎓 QUẢN LÝ HỌC TẬP       |
 |                                 |
@@ -164,185 +168,3 @@ Quên mật khẩu
 |                                 |
 |          Quên mật khẩu?         |
 +---------------------------------+
-
-3.3. Giao diện sinh viên
-Trang chủ
-
-Sinh viên có thể xem:
-
-Thông tin cá nhân
-
-Danh sách môn học
-
-Đăng ký môn học
-
-Thời khóa biểu
-
-Kết quả học tập
-
-Tài liệu học tập
-
-+-----------------------------------------------+
-| 🎓 HỆ THỐNG QUẢN LÝ HỌC TẬP          👤 SV   |
-+----------------+------------------------------+
-| 🏠 Trang chủ   |      Xin chào, Sinh viên!   |
-| 📚 Môn học     |      Môn học: 6             |
-| 📝 Đăng ký     |      Đã đăng ký: 5          |
-| 📅 Lịch học    |      GPA: 3.25              |
-| 📊 Điểm        |                              |
-| 📖 Tài liệu    |                              |
-| 🚪 Đăng xuất   |                              |
-+----------------+------------------------------+
-
-Đăng ký môn học
-
-Sinh viên chọn môn học muốn đăng ký. Hệ thống hiển thị mã môn, tên môn, số tín chỉ, giảng viên và sĩ số lớp.
-
-Ví dụ:
-
-CNTT01 - Lập trình Web
-3 tín chỉ - GV: Nguyễn Văn A
-Sĩ số: 35/50
-[ ĐĂNG KÝ ]
-
-CNTT02 - Cơ sở dữ liệu
-3 tín chỉ - GV: Trần Văn B
-Sĩ số: 40/50
-[ ĐĂNG KÝ ]
-
-Xem điểm
-
-Sinh viên xem điểm của từng môn học và điểm trung bình.
-
-CNTT01 - Lập trình Web       : 8.5
-CNTT02 - Cơ sở dữ liệu       : 7.8
-CNTT03 - Phân tích hệ thống  : 9.0
-
-Điểm trung bình: 8.43
-
-3.4. Giao diện giảng viên
-
-Giảng viên có các chức năng:
-
-🏠 Trang chủ
-
-🏫 Quản lý lớp học
-
-👥 Xem danh sách sinh viên
-
-📖 Quản lý tài liệu
-
-📊 Nhập và cập nhật điểm
-
-👤 Quản lý thông tin cá nhân
-
-🚪 Đăng xuất
-
-+-----------------------------------------------+
-| 🎓 QUẢN LÝ HỌC TẬP                 👨‍🏫 GV    |
-+----------------+------------------------------+
-| 🏠 Trang chủ   |       Lớp học phần           |
-| 🏫 Lớp học     |                              |
-| 👥 Sinh viên   |  CNTT01 - Lập trình Web     |
-| 📖 Tài liệu    |  CNTT02 - Cơ sở dữ liệu     |
-| 📊 Nhập điểm   |                              |
-| 🚪 Đăng xuất   |                              |
-+----------------+------------------------------+
-
-Nhập điểm
-
-Giảng viên chọn lớp học phần, chọn sinh viên và nhập điểm.
-
-SV001 - Nguyễn Văn A
-Chuyên cần: 9 | Giữa kỳ: 8 | Cuối kỳ: 9
-Điểm tổng: 8.7
-
-SV002 - Trần Văn B
-Chuyên cần: 8 | Giữa kỳ: 7 | Cuối kỳ: 8
-Điểm tổng: 7.7
-
-[ LƯU ĐIỂM ]    [ HỦY ]
-
-3.5. Giao diện quản trị viên
-
-Quản trị viên có quyền quản lý toàn bộ hệ thống.
-
-Các chức năng:
-
-👤 Quản lý tài khoản
-
-👨‍🎓 Quản lý sinh viên
-
-👨‍🏫 Quản lý giảng viên
-
-📚 Quản lý môn học
-
-🏫 Quản lý lớp học
-
-📊 Xem báo cáo
-
-🚪 Đăng xuất
-
-+-----------------------------------------------+
-| 🎓 QUẢN TRỊ HỆ THỐNG              👨‍💼 ADMIN |
-+----------------+------------------------------+
-| 🏠 Trang chủ   |      Tổng quan hệ thống     |
-| 👤 Tài khoản   |                              |
-| 👨‍🎓 Sinh viên  |      Sinh viên: 500          |
-| 👨‍🏫 Giảng viên |      Giảng viên: 50           |
-| 📚 Môn học     |      Môn học: 80              |
-| 🏫 Lớp học     |      Lớp học phần: 120        |
-| 📊 Báo cáo     |                              |
-| 🚪 Đăng xuất   |                              |
-+----------------+------------------------------+
-
-3.6. Nguyên tắc thiết kế
-
-Giao diện đơn giản, dễ sử dụng.
-
-Bố cục rõ ràng.
-
-Phân quyền theo từng nhóm người dùng.
-
-Responsive trên máy tính và điện thoại.
-
-Màu sắc thống nhất.
-
-Có thông báo khi thực hiện thao tác.
-
-Hạn chế các thao tác không cần thiết.
-
-Màu sắc chủ đạo
-Primary    : #2563EB
-Success    : #16A34A
-Warning    : #F59E0B
-Danger     : #DC2626
-Background : #F8FAFC
-Text       : #1E293B
-
-3.7. Cấu trúc giao diện
-              HỆ THỐNG QUẢN LÝ HỌC TẬP
-                         |
-          +--------------+--------------+
-          |              |              |
-          v              v              v
-      Sinh viên      Giảng viên       Admin
-          |              |              |
-          v              v              v
-       Môn học        Lớp học       Tài khoản
-       Đăng ký        Tài liệu      Sinh viên
-       Lịch học       Nhập điểm     Giảng viên
-       Điểm           Sinh viên     Môn học
-       Tài liệu                     Lớp học
-
-3.8. Kết quả
-
-Giao diện được thiết kế theo từng nhóm người dùng:
-
-👨‍🎓 Sinh viên: Theo dõi và quản lý quá trình học tập.
-
-👨‍🏫 Giảng viên: Quản lý lớp học, tài liệu và điểm.
-
-👨‍💼 Quản trị viên: Quản lý toàn bộ hệ thống.
-
-Thiết kế giao diện là cơ sở để triển khai Frontend của hệ thống.
