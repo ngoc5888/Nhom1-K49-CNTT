@@ -104,3 +104,25 @@ graph TD
     
     Student --> DX3(Đăng xuất)
 ```
+## Phần 4: Triển khai và Kiểm thử
+
+### 4.1. Môi trường triển khai
+* **Mã nguồn & Quản lý phiên bản:** Git, GitHub.
+* **Công cụ lập trình:** Visual Studio Code.
+* **Kiểm thử API:** Postman.
+
+### 4.2. Kết quả đạt được
+* Xây dựng thành công hệ thống với 3 phân quyền hoạt động độc lập: **Admin**, **Giảng viên**, và **Sinh viên**.
+* Hoàn thiện các luồng nghiệp vụ cốt lõi: Quản lý danh mục đào tạo, Đăng tải học liệu (Video, PDF), Quản lý bài tập/đề thi và Theo dõi kết quả học tập.
+
+### 4.3. Kiểm thử hệ thống (Testing)
+Quá trình kiểm thử được thực hiện để đảm bảo tính ổn định của hệ thống:
+* **Kiểm thử giao diện (UI/UX):** Đảm bảo tính Responsive và các luồng thao tác (nhấp chuột, điền form) hoạt động đúng như thiết kế.
+* **Kiểm thử API (Backend):** Sử dụng Postman để xác thực các endpoint, đảm bảo dữ liệu trả về chính xác (đặc biệt là API Đăng nhập và Nộp bài).
+* **Kiểm thử luồng nghiệp vụ:**
+  * Hệ thống tự động chặn truy cập (báo lỗi 403) khi sinh viên cố tình vào trang của giảng viên.
+  * Tự động khóa thao tác và thu bài thi khi hết thời gian đếm ngược.
+
+### 4.4. Hướng phát triển
+* Nâng cấp hệ thống lưu trữ đám mây (Cloud Storage) để tối ưu băng thông tải video bài giảng.
+* Tích hợp tính năng phòng học trực tuyến (Video Call) để tăng tính tương tác.
