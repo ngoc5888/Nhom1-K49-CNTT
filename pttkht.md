@@ -6,6 +6,7 @@ Bảng mô tả bài toán
 | **Bối cảnh** | Nhu cầu tổ chức và tham gia học tập trên môi trường trực tuyến cho nhà trường, giảng viên và sinh viên. |
 | **Thực trạng giải quyết** | Khắc phục tình trạng quản lý phân tán thông tin người dùng, môn học, tài liệu giảng dạy, bài tập và theo dõi điểm. |
 | **Giải pháp** | Xây dựng Hệ thống Quản lý Học tập Trực tuyến để quản trị toàn bộ hoạt động dạy và học. |                      |
+
 Mục tiêu dự án
 * Xây dựng nền tảng hỗ trợ học tập trực tuyến.
 * Quản lý tập trung thông tin sinh viên, giảng viên và tài khoản toàn hệ thống.
