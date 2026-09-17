@@ -133,38 +133,54 @@ Quá trình kiểm thử được thực hiện để đảm bảo tính ổn đ
 * Tích hợp tính năng phòng học trực tuyến (Video Call) để tăng tính tương tác.
 #### 3. THIẾT KẾ GIAO DIỆN
 
-## 3.1. Mục tiêu
-
-Thiết kế giao diện hệ thống quản lý học tập đơn giản, dễ sử dụng và phù hợp với từng nhóm người dùng.
-
-Hệ thống gồm 3 nhóm người dùng:
-
-- 👨‍🎓 Sinh viên
-- 👨‍🏫 Giảng viên
-- 👨‍💼 Quản trị viên
-
----
-
-## 3.2. Giao diện đăng nhập
-
-Người dùng nhập:
-
-- Tên đăng nhập
-- Mật khẩu
-
-Chức năng:
-
-- Đăng nhập
-- Quên mật khẩu
-
-```text
-+---------------------------------+
-|       🎓 QUẢN LÝ HỌC TẬP       |
-|                                 |
-| Tên đăng nhập: [____________]   |
-| Mật khẩu:      [____________]   |
-|                                 |
-|          [ ĐĂNG NHẬP ]          |
-|                                 |
-|          Quên mật khẩu?         |
-+---------------------------------+
+Hệ thống quản lý học tập
+1. Giới thiệu
+Hệ thống quản lý học tập (LMS) được xây dựng nhằm hỗ trợ sinh viên, giảng viên và quản trị viên trong việc quản lý quá trình học tập.
+2. Đối tượng sử dụng
+Sinh viên: Xem khóa học, học bài, làm bài tập, xem điểm và theo dõi tiến độ.
+Giảng viên: Quản lý khóa học, tạo bài tập, chấm điểm và theo dõi sinh viên.
+Quản trị viên: Quản lý tài khoản, khóa học và các chức năng của hệ thống.
+3. Thiết kế giao diện
+Giao diện được thiết kế theo hướng đơn giản, dễ sử dụng và dễ mở rộng.
+Dashboard
+Hiển thị các thông tin chính:
+Khóa học đang tham gia
+Tiến độ học tập
+Bài tập sắp đến hạn
+Lịch học
+Thông báo
+Quản lý khóa học
+Sinh viên có thể xem nội dung bài học, tài liệu và tiến độ.
+Giảng viên có thể tạo, chỉnh sửa và quản lý nội dung khóa học.
+Bài tập và kiểm tra
+Sinh viên làm và nộp bài.
+Giảng viên chấm điểm và nhận xét.
+Hệ thống hiển thị kết quả sau khi hoàn thành.
+Quản lý điểm
+Hiển thị:
+Điểm từng bài tập
+Điểm kiểm tra
+Điểm trung bình
+Kết quả học tập
+Quản lý người dùng
+Quản trị viên có thể:
+Quản lý sinh viên
+Quản lý giảng viên
+Quản lý tài khoản
+Phân quyền người dùng
+4. Điều hướng giao diện
+Dashboard
+├── Khóa học
+├── Bài tập
+├── Điểm số
+├── Lịch học
+├── Thông báo
+└── Cài đặt
+5. Nguyên tắc UI/UX
+Giao diện đơn giản, trực quan.
+Bố cục rõ ràng và nhất quán.
+Màu sắc và font chữ dễ đọc.
+Responsive trên máy tính và điện thoại.
+Các chức năng được phân quyền theo từng loại người dùng.
+6. Mục tiêu
+Hệ thống hướng tới việc tạo ra một môi trường học tập trực tuyến thuận tiện, giúp người dùng dễ dàng quản lý khóa học, bài tập, điểm số và tiến độ học tập.
