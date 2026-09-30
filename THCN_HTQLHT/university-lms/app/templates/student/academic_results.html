@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Kết quả Học tập - Student LMS{% endblock %}
+{% block header_title %}Kết quả Học tập & Bảng điểm{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+    <!-- Summary Cards Header -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <div>
+                <p class="text-xs font-medium text-slate-500 uppercase">GPA Tích lũy</p>
+                <h3 class="text-2xl font-extrabold text-purple-600 mt-0.5">{{ gpa4 }}/4</h3>
+            </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-calculator"></i>
+            </div>
+            <div>
+                <p class="text-xs font-medium text-slate-500 uppercase">Điểm TB kỳ{% if current_semester_label %} ({{ current_semester_label }}){% endif %}</p>
+                <h3 class="text-2xl font-extrabold text-sky-600 mt-0.5">{{ avg_score }}/10</h3>
+            </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            <div>
+                <p class="text-xs font-medium text-slate-500 uppercase">Xếp loại Học lực</p>
+                <h3 class="text-xl font-bold text-slate-900 mt-0.5">{{ classification }}</h3>
+            </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-book-bookmark"></i>
+            </div>
+            <div>
+                <p class="text-xs font-medium text-slate-500 uppercase">Tổng số môn</p>
+                <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">{{ total_courses }}</h3>
+            </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+                <p class="text-xs font-medium text-slate-500 uppercase">Môn đã hoàn thành</p>
+                <h3 class="text-2xl font-extrabold text-emerald-600 mt-0.5">{{ completed_courses }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart & Table Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Grades Table -->
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden space-y-4">
+            <div class="p-5 border-b border-slate-100">
+                <h3 class="text-base font-bold text-slate-900">Bảng điểm chi tiết theo môn học</h3>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 bg-slate-50/80">
+                            <th class="py-3 px-5">Môn học</th>
+                            <th class="py-3 px-5 text-center">A1 (Chuyên cần)</th>
+                            <th class="py-3 px-5 text-center">A2 (Giữa kỳ)</th>
+                            <th class="py-3 px-5 text-center">A3 (Cuối kỳ)</th>
+                            <th class="py-3 px-5 text-center">Tổng kết</th>
+                            <th class="py-3 px-5 text-center">Điểm chữ</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        {% for g in grades %}
+                        <tr class="hover:bg-slate-50/80 transition-colors">
+                            <td class="py-3.5 px-5 font-semibold text-slate-800">
+                                {{ g.course_name }}
+                                <span class="block text-[11px] text-slate-400 font-normal font-mono">{{ g.course_code }} ({{ g.credits }} TC)</span>
+                            </td>
+                            <td class="py-3.5 px-5 text-center font-mono">{{ g.a1 }}</td>
+                            <td class="py-3.5 px-5 text-center font-mono">{{ g.a2 }}</td>
+                            <td class="py-3.5 px-5 text-center font-mono">{{ g.a3 }}</td>
+                            <td class="py-3.5 px-5 text-center font-bold font-mono text-purple-600 text-base">{{ g.total_score }}</td>
+                            <td class="py-3.5 px-5 text-center">
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-100 text-purple-800">
+                                    {{ g.letter_grade }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="6" class="py-8 text-center text-slate-400">Chưa có dữ liệu bảng điểm.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Grade Chart -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
+            <h3 class="text-base font-bold text-slate-900">Biểu đồ thống kê điểm số</h3>
+            <div class="h-64 flex items-center justify-center">
+                <canvas id="gradeChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const ctx = document.getElementById('gradeChart').getContext('2d');
+    const gradeChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [{% for g in grades %}'{{ g.course_code }}',{% endfor %}],
+            datasets: [{
+                label: 'Điểm tổng kết',
+                data: [{% for g in grades %}{{ g.total_score }},{% endfor %}],
+                backgroundColor: 'rgba(124, 58, 237, 0.8)',
+                borderColor: '#7c3aed',
+                borderWidth: 1,
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, max: 10 }
+            }
+        }
+    });
+</script>
+{% endblock %}

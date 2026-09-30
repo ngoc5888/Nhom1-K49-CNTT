@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Quản lý Tài liệu - Teacher LMS{% endblock %}
+{% block header_title %}Quản lý Học liệu & Bài giảng{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+    <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold text-slate-900">Danh sách Tài liệu học tập đã tải lên</h2>
+        <button onclick="document.getElementById('uploadMaterialModal').classList.remove('hidden')" class="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold text-xs rounded-xl shadow-md transition-all flex items-center space-x-2">
+            <i class="fa-solid fa-upload"></i>
+            <span>+ Thêm Tài liệu mới</span>
+        </button>
+    </div>
+
+    <!-- Materials Table -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                    <tr class="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 bg-slate-50">
+                        <th class="py-3 px-5">Tên tài liệu</th>
+                        <th class="py-3 px-5">Lớp học</th>
+                        <th class="py-3 px-5">Loại tệp</th>
+                        <th class="py-3 px-5">Dung lượng</th>
+                        <th class="py-3 px-5">Ngày tải lên</th>
+                        <th class="py-3 px-5 text-right">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    {% for m in materials %}
+                    <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3.5 px-5 font-semibold text-slate-900">
+                            {{ m.title }}
+                            <p class="text-xs text-slate-500 font-normal">{{ m.description }}</p>
+                        </td>
+                        <td class="py-3.5 px-5 text-slate-600 text-xs">{{ m.course_name }}</td>
+                        <td class="py-3.5 px-5">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-50 text-purple-700">{{ m.file_type }}</span>
+                        </td>
+                        <td class="py-3.5 px-5 font-mono text-xs text-slate-500">{{ m.file_size }}</td>
+                        <td class="py-3.5 px-5 text-xs text-slate-500 font-mono">{{ m.created_at[:10] }}</td>
+                        <td class="py-3.5 px-5 text-right">
+                            <a href="{{ m.file_path }}" download class="px-3 py-1 bg-indigo-600 text-white text-xs font-semibold rounded-lg hover:bg-indigo-700">
+                                <i class="fa-solid fa-download"></i> Tải về
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="6" class="py-8 text-center text-slate-400">Chưa có tài liệu nào.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Upload Material -->
+    <div id="uploadMaterialModal" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="text-base font-bold text-slate-900">Tải lên Tài liệu học tập</h3>
+                <button onclick="document.getElementById('uploadMaterialModal').classList.add('hidden')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form method="POST" action="{{ url_for('teacher_bp.upload_material') }}" enctype="multipart/form-data" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Lớp học phần</label>
+                    <select name="course_id" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        {% for c in courses %}
+                            <option value="{{ c.id }}">{{ c.name }} ({{ c.code }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Tên tài liệu</label>
+                    <input type="text" name="title" required placeholder="Giáo trình Lập trình Web..." class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Loại tài liệu</label>
+                    <select name="file_type" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        <option value="PDF">PDF</option>
+                        <option value="Word">Word</option>
+                        <option value="PowerPoint">PowerPoint</option>
+                        <option value="Video">Video</option>
+                        <option value="Zip">Zip / Source Code</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Mô tả ngắn</label>
+                    <textarea name="description" rows="2" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Chọn Tệp</label>
+                    <input type="file" name="material_file" class="w-full text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-xl p-1">
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-3">
+                    <button type="button" onclick="document.getElementById('uploadMaterialModal').classList.add('hidden')" class="px-4 py-2 bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl">Hủy</button>
+                    <button type="submit" class="px-5 py-2 bg-purple-600 text-white text-xs font-semibold rounded-xl">Tải lên</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
