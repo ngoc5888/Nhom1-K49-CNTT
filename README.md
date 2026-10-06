@@ -240,7 +240,7 @@ university-lms/
 │   ├── balance_distribution.py     # Script chuẩn hóa cân đối dữ liệu 10 Khoa - 10 Ngành
 │   ├── test_full_suite.py          # Kịch bản kiểm thử hồi quy 27 routes
 │   ├── verify_system.py            # Kịch bản kiểm thử toàn diện nghiệp vụ & kiểm soát
-│   └── __init__.py                 # Khởi tạo Flask Application, context processors, before_request hook
+│   └── init.py                 # Khởi tạo Flask Application, context processors, before_request hook
 ├── lms.db                          # Cơ sở dữ liệu SQLite3 đầy đủ
 ├── run.py                          # File thực thi máy chủ Flask chính
 └── README.md                       # Tài liệu hướng dẫn và đặc tả hệ thống
