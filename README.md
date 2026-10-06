@@ -147,13 +147,13 @@ Cho phép lọc kết hợp linh hoạt:
   - Phân loại học lực: **Xuất sắc** ($A \ge 8.5$), **Giỏi** ($B: 7.0 - 8.4$), **Khá** ($C: 5.5 - 6.9$), **Trung bình** ($D: 4.0 - 5.4$), **Yếu / Kém** ($F < 4.0$).
 
 #### 3. Hệ thống 7 Biểu đồ Chart.js Trực quan
-1. 📊 **Biểu đồ cột:** Số lượng sinh viên theo từng khoa (10 khoa).
-2. 📊 **Biểu đồ cột:** Số lượng sinh viên theo từng ngành đào tạo (10 ngành).
-3. 📈 **Biểu đồ đường (Line):** Số lượng sinh viên tham gia học tập theo từng năm học (2020 – 2028).
-4. 📊 **Biểu đồ cột:** Số lượng giảng viên theo từng khoa (chuẩn hóa 2 GV/khoa).
-5. 🍩 **Biểu đồ tròn (Doughnut):** Tỷ lệ phân bố sinh viên giữa các khoa toàn trường.
-6. 📊 **Biểu đồ cột:** Số lượng lớp học sinh hoạt theo từng khoa (4 lớp/khoa).
-7. 📊 **Biểu đồ cột đa kỳ:** Thống kê số lượng sinh viên học tập theo từng học kỳ (16 học kỳ).
+1. **Biểu đồ cột:** Số lượng sinh viên theo từng khoa (10 khoa).
+2. **Biểu đồ cột:** Số lượng sinh viên theo từng ngành đào tạo (10 ngành).
+3. **Biểu đồ đường (Line):** Số lượng sinh viên tham gia học tập theo từng năm học (2020 – 2028).
+4. **Biểu đồ cột:** Số lượng giảng viên theo từng khoa (chuẩn hóa 2 GV/khoa).
+5. **Biểu đồ tròn (Doughnut):** Tỷ lệ phân bố sinh viên giữa các khoa toàn trường.
+6. **Biểu đồ cột:** Số lượng lớp học sinh hoạt theo từng khoa (4 lớp/khoa).
+7. **Biểu đồ cột đa kỳ:** Thống kê số lượng sinh viên học tập theo từng học kỳ (16 học kỳ).
 
 #### 4. Xuất Báo cáo CSV Chuẩn Excel
 - Nút **[ Xuất Báo Cáo CSV ]** xuất toàn bộ bảng dữ liệu kết quả học tập theo đúng tiêu chí lọc hiện tại.
@@ -257,20 +257,20 @@ Hệ thống được trang bị bộ kiểm thử tự động toàn diện:
 ```bash
 python app/verify_system.py
 ```
-- ✅ Kiểm tra tính toàn vẹn của 10 Khoa, 10 Ngành, 20 Môn, 40 Lớp SH, 20 Giảng viên, 53 Sinh viên, 8 Năm học, 16 Học kỳ.
-- ✅ Kiểm tra bảo toàn các tài khoản quản trị và học tập mặc định.
-- ✅ Kiểm tra đăng nhập, Admin Dashboard, Báo cáo thống kê, 7 biểu đồ và xuất CSV.
-- ✅ Kiểm tra Admin phát thông báo broadcast toàn trường thành công.
-- ✅ Kiểm tra Giảng viên phát thông báo theo lớp học phần thành công.
-- ✅ Kiểm tra Sinh viên nhận đúng thông báo từ Admin và Giảng viên.
-- ✅ Kiểm tra Chế độ Bảo trì: Chặn đúng Sinh viên/Giảng viên, Admin không bị chặn, tự động tạo thông báo.
-- ✅ Kiểm tra Khóa Hệ thống: Chặn đúng Sinh viên/Giảng viên, Admin không bị chặn, tự động tạo thông báo.
+-  Kiểm tra tính toàn vẹn của 10 Khoa, 10 Ngành, 20 Môn, 40 Lớp SH, 20 Giảng viên, 53 Sinh viên, 8 Năm học, 16 Học kỳ.
+-  Kiểm tra bảo toàn các tài khoản quản trị và học tập mặc định.
+-  Kiểm tra đăng nhập, Admin Dashboard, Báo cáo thống kê, 7 biểu đồ và xuất CSV.
+-  Kiểm tra Admin phát thông báo broadcast toàn trường thành công.
+-  Kiểm tra Giảng viên phát thông báo theo lớp học phần thành công.
+-  Kiểm tra Sinh viên nhận đúng thông báo từ Admin và Giảng viên.
+-  Kiểm tra Chế độ Bảo trì: Chặn đúng Sinh viên/Giảng viên, Admin không bị chặn, tự động tạo thông báo.
+-  Kiểm tra Khóa Hệ thống: Chặn đúng Sinh viên/Giảng viên, Admin không bị chặn, tự động tạo thông báo.
 
 ### 2. Kiểm thử Hồi quy 27 Routes (`test_full_suite.py`):
 ```bash
 python app/test_full_suite.py
 ```
-- ✅ 100% các endpoint Sinh viên, Giảng viên, Admin, Thông báo, Hồ sơ, Đăng nhập, Bảo trì đều phản hồi mã `200 OK`.
+-  100% các endpoint Sinh viên, Giảng viên, Admin, Thông báo, Hồ sơ, Đăng nhập, Bảo trì đều phản hồi mã `200 OK`.
 
 ---
 
