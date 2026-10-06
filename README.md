@@ -5,14 +5,14 @@
 1. [Giới thiệu Tổng quan](#-giới-thiệu-tổng-quan)
 2. [Mục tiêu](#mục-tiêu-đề-tài)
 3. [Các chức năng chính](#các-chức-năng-chính-của-hệ-thống)
-4. [Chế độ kiểm soát hệ thống]
-5. [Công nghệ sử dụng]
+4. [Chế độ kiểm soát hệ thống](#cách-thức-kiểm-soát-hệ-thống)
+5. [Công nghệ sử dụng] (#công-nghệ-áp-dụng-cho-hệ-thống)
 6. [Thành viên nhóm](#-phân-công-công-việc-từng-thành-viên)
-7. [Phân công công việc]
+7. [Phân công công việc](#phân-công-công-việc)
 8. [Cấu trúc Thư mục Dự án](#-cấu-trúc-thư-mục-dự-án)
-9. [Trạng thái dự án]
-10. [Tài khoản demo thử nghiệm]
-11. [Hướng dẫn cài đặt và khởi chạy]
+9. [Trạng thái dự án](#trạng-thái-của-dự-án)
+10. [Tài khoản demo thử nghiệm](#tài-khoản-chạy-demo)
+11. [Hướng dẫn cài đặt và khởi chạy](#hướng-dẫn-cài-đặt-&-chạy-demo)
 
 ## 1. Giới thiệu tổng quan
 
