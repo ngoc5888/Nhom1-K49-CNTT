@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Thông Báo Toàn Trường - Admin LMS{% endblock %}
+{% block header_title %}Quản Lý & Phát Thông Báo Toàn Trường{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+    <!-- Top Banner -->
+    <div class="p-6 lg:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 border border-slate-800 relative overflow-hidden">
+        <div class="space-y-2 z-10">
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">
+                📢 TRUNG TÂM PHÁT THÔNG BÁO
+            </div>
+            <h1 class="text-2xl lg:text-3xl font-extrabold tracking-tight">Thông Báo Toàn Trường</h1>
+            <p class="text-slate-300 text-xs sm:text-sm max-w-xl">
+                Gửi thông báo broadcast trực tiếp đến toàn bộ người dùng, toàn thể sinh viên hoặc cán bộ giảng viên trong trường đại học.
+            </p>
+        </div>
+
+        <!-- Audience Stat Badges -->
+        <div class="flex flex-wrap gap-3 z-10 shrink-0">
+            <div class="bg-slate-800/80 px-4 py-2.5 rounded-2xl border border-slate-700 text-center">
+                <p class="text-[10px] text-slate-400 font-bold uppercase">Toàn bộ người dùng</p>
+                <p class="text-lg font-black text-white">{{ total_users_count }}</p>
+            </div>
+            <div class="bg-slate-800/80 px-4 py-2.5 rounded-2xl border border-slate-700 text-center">
+                <p class="text-[10px] text-pink-400 font-bold uppercase">Sinh viên</p>
+                <p class="text-lg font-black text-pink-400">{{ total_students_count }}</p>
+            </div>
+            <div class="bg-slate-800/80 px-4 py-2.5 rounded-2xl border border-slate-700 text-center">
+                <p class="text-[10px] text-purple-400 font-bold uppercase">Giảng viên</p>
+                <p class="text-lg font-black text-purple-400">{{ total_teachers_count }}</p>
+            </div>
+        </div>
+
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    </div>
+
+    <!-- Create Broadcast Form & Sent History Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Form Column (1 col) -->
+        <div class="lg:col-span-1 bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-5">
+            <div class="flex items-center space-x-3 pb-3 border-b border-slate-100">
+                <span class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-base"><i class="fa-solid fa-bullhorn"></i></span>
+                <div>
+                    <h2 class="text-base font-bold text-slate-900">Tạo Thông Báo Mới</h2>
+                    <p class="text-xs text-slate-500">Phát tin tức đến người dùng hệ thống</p>
+                </div>
+            </div>
+
+            <form method="POST" action="{{ url_for('admin_bp.broadcast_notifications') }}" class="space-y-4">
+                <!-- Target Group -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Đối tượng nhận thông báo *</label>
+                    <select name="target_type" class="w-full text-xs rounded-xl border-slate-200 focus:ring-purple-500 focus:border-purple-500 py-2.5 px-3 bg-slate-50 border font-medium">
+                        <option value="all">👥 Toàn bộ người dùng (Sinh viên & Giảng viên)</option>
+                        <option value="student">🎓 Toàn bộ Sinh viên</option>
+                        <option value="teacher">👨‍🏫 Toàn bộ Giảng viên</option>
+                    </select>
+                </div>
+
+                <!-- Title -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Tiêu đề thông báo *</label>
+                    <input type="text" name="title" required placeholder="Nhập tiêu đề thông báo..." class="w-full text-xs rounded-xl border-slate-200 focus:ring-purple-500 focus:border-purple-500 py-2.5 px-3 bg-slate-50 border">
+                </div>
+
+                <!-- Content -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Nội dung chi tiết *</label>
+                    <textarea name="content" required rows="5" placeholder="Nhập nội dung thông báo đầy đủ..." class="w-full text-xs rounded-xl border-slate-200 focus:ring-purple-500 focus:border-purple-500 py-2.5 px-3 bg-slate-50 border leading-relaxed"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white text-xs font-bold shadow-lg shadow-purple-500/20 flex items-center justify-center space-x-2 transition-all">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Phát Thông Báo Ngay</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- History Column (2 cols) -->
+        <div class="lg:col-span-2 bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-4 flex flex-col">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                    <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-base"><i class="fa-solid fa-clock-rotate-left"></i></span>
+                    <div>
+                        <h2 class="text-base font-bold text-slate-900">Lịch Sử Thông Báo Đã Phát</h2>
+                        <p class="text-xs text-slate-500">Danh sách các thông báo toàn trường đã gửi</p>
+                    </div>
+                </div>
+                <span class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-600">{{ broadcasts|length }} thông báo</span>
+            </div>
+
+            {% if broadcasts %}
+            <div class="overflow-x-auto flex-1">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-200/80 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-50/50">
+                            <th class="py-3 px-3">Tiêu đề & Nội dung</th>
+                            <th class="py-3 px-3">Đối tượng nhận</th>
+                            <th class="py-3 px-3">Người gửi</th>
+                            <th class="py-3 px-3">Ngày gửi</th>
+                            <th class="py-3 px-3 text-right">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        {% for b in broadcasts %}
+                        <tr class="hover:bg-slate-50/80 transition-colors">
+                            <td class="py-3.5 px-3 max-w-xs">
+                                <p class="font-bold text-slate-900 line-clamp-1">{{ b.title }}</p>
+                                <p class="text-[11px] text-slate-500 line-clamp-2 mt-0.5">{{ b.content }}</p>
+                            </td>
+                            <td class="py-3.5 px-3 whitespace-nowrap">
+                                {% if b.target_type == 'all' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200/50">
+                                        👥 Toàn bộ
+                                    </span>
+                                {% elif b.target_type == 'student' %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-pink-50 text-pink-700 border border-pink-200/50">
+                                        🎓 Sinh viên
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200/50">
+                                        👨‍🏫 Giảng viên
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="py-3.5 px-3 text-slate-700 font-medium whitespace-nowrap">
+                                {{ b.sender_name }}
+                            </td>
+                            <td class="py-3.5 px-3 text-slate-400 whitespace-nowrap font-mono text-[11px]">
+                                {{ b.created_at }}
+                            </td>
+                            <td class="py-3.5 px-3 text-right whitespace-nowrap">
+                                <form method="POST" action="{{ url_for('admin_bp.delete_broadcast', announcement_id=b.id) }}" onsubmit="return confirm('Bạn có chắc chắn muốn xóa thông báo này khỏi lịch sử?');" class="inline">
+                                    <button type="submit" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors" title="Xóa thông báo">
+                                        <i class="fa-solid fa-trash text-xs"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="py-12 text-center text-slate-400 text-xs">
+                <i class="fa-solid fa-inbox text-3xl mb-2 text-slate-300"></i>
+                <p>Chưa có thông báo nào được phát.</p>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

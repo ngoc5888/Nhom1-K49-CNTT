@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Đăng ký tài khoản - University LMS{% endblock %}
+
+{% block auth_content %}
+<div class="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-100 p-8 text-center space-y-6">
+    <div class="inline-flex w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-600 items-center justify-center text-3xl font-bold">
+        <i class="fa-solid fa-user-lock"></i>
+    </div>
+    
+    <div class="space-y-2">
+        <h2 class="text-xl font-bold text-slate-900 tracking-tight">Đăng ký tài khoản công khai đã đóng</h2>
+        <p class="text-sm text-slate-500">
+            Hệ thống quản lý học tập yêu cầu tài khoản được cấp bởi Quản trị viên nhà trường.
+        </p>
+    </div>
+
+    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs text-slate-600 space-y-1">
+        <p class="font-semibold text-slate-800">Chưa có tài khoản?</p>
+        <p>Vui lòng liên hệ quản trị viên để được cấp tài khoản.</p>
+    </div>
+
+    <div>
+        <a href="{{ url_for('auth_bp.login') }}" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold text-sm shadow-md shadow-pink-500/20 transition-all space-x-2">
+            <i class="fa-solid fa-arrow-left text-xs"></i>
+            <span>Quay lại trang Đăng nhập</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
