@@ -6,7 +6,7 @@
 2. [Mục tiêu](#mục-tiêu-đề-tài)
 3. [Các chức năng chính](#các-chức-năng-chính-của-hệ-thống)
 4. [Chế độ kiểm soát hệ thống](#cách-thức-kiểm-soát-hệ-thống)
-5. [Công nghệ sử dụng] (#công-nghệ-áp-dụng-cho-hệ-thống)
+5. [Công nghệ sử dụng](#công-nghệ-áp-dụng)
 6. [Thành viên nhóm](#-phân-công-công-việc-từng-thành-viên)
 7. [Phân công công việc](#phân-công-công-việc)
 8. [Cấu trúc Thư mục Dự án](#-cấu-trúc-thư-mục-dự-án)
