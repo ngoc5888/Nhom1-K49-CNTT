@@ -111,26 +111,37 @@ graph TD
 ```
 ## Phần 4: Triển khai và Kiểm thử
 
+## Phần 4: Triển khai và Kiểm thử
+
 ### 4.1. Môi trường triển khai
-* **Mã nguồn & Quản lý phiên bản:** Git, GitHub.
-* **Công cụ lập trình:** Visual Studio Code.
-* **Kiểm thử API:** Postman.
+* **Ngôn ngữ & Framework:** Python, Flask
+* **Môi trường phát triển:** Visual Studio Code
+* **Quản lý mã nguồn:** Git, GitHub
+* **Công cụ kiểm thử:** Python `unittest` (Flask Test Client), Postman
 
 ### 4.2. Kết quả đạt được
-* Xây dựng thành công hệ thống với 3 phân quyền hoạt động độc lập: **Admin**, **Giảng viên**, và **Sinh viên**.
-* Hoàn thiện các luồng nghiệp vụ cốt lõi: Quản lý danh mục đào tạo, Đăng tải học liệu (Video, PDF), Quản lý bài tập/đề thi và Theo dõi kết quả học tập.
+* Xây dựng hệ thống web phân quyền 3 nhóm người dùng: Quản trị viên (Admin), Giảng viên và Sinh viên.
+* Hoàn thiện các luồng chức năng cốt lõi:
+  * Quản lý tài khoản và phân quyền truy cập.
+  * Đăng tải học liệu (tệp PDF, liên kết video bài giảng).
+  * Giao bài tập, nộp bài và chấm điểm trực tiếp.
+  * Theo dõi kết quả và tiến độ học tập.
 
 ### 4.3. Kiểm thử hệ thống (Testing)
-Quá trình kiểm thử được thực hiện để đảm bảo tính ổn định của hệ thống:
-* **Kiểm thử giao diện (UI/UX):** Đảm bảo tính Responsive và các luồng thao tác (nhấp chuột, điền form) hoạt động đúng như thiết kế.
-* **Kiểm thử API (Backend):** Sử dụng Postman để xác thực các endpoint, đảm bảo dữ liệu trả về chính xác (đặc biệt là API Đăng nhập và Nộp bài).
-* **Kiểm thử luồng nghiệp vụ:**
-  * Hệ thống tự động chặn truy cập (báo lỗi 403) khi sinh viên cố tình vào trang của giảng viên.
-  * Tự động khóa thao tác và thu bài thi khi hết thời gian đếm ngược.
 
-### 4.4. Hướng phát triển
-* Nâng cấp hệ thống lưu trữ đám mây (Cloud Storage) để tối ưu băng thông tải video bài giảng.
-* Tích hợp tính năng phòng học trực tuyến (Video Call) để tăng tính tương tác.
+#### Kiểm thử tự động (Unit Test với `unittest`)
+Sử dụng `Flask Test Client` để kiểm tra phản hồi từ các endpoint:
+* `test_home_redirect`: Gửi yêu cầu `GET /` khi chưa đăng nhập $\rightarrow$ Trả về mã HTTP `302` (chuyển hướng về `/login`).
+* `test_login_page`: Gửi yêu cầu `GET /login` $\rightarrow$ Trả về mã HTTP `200` (trang đăng nhập hiển thị bình thường).
+
+#### Kiểm thử chức năng & API (Manual & Postman)
+* **Xác thực và phân quyền:** Kiểm tra luồng đăng nhập; chặn quyền truy cập trái phép của sinh viên vào các trang quản lý của giảng viên (trả về lỗi `403` hoặc điều hướng lại).
+* **Nghiệp vụ bài tập:** Kiểm tra tính hợp lệ của dữ liệu form đầu vào, định dạng tệp tải lên và xử lý khi nộp bài.
+* **Giao diện:** Kiểm tra khả năng hiển thị trên trình duyệt máy tính và thiết bị di động.
+
+### 4.4. Hạn chế và Hướng phát triển
+* Mở rộng thêm các kịch bản kiểm thử tự động cho phương thức `POST` (đăng nhập sai thông tin, nộp bài quá hạn).
+* Tối ưu hóa lưu trữ tệp bài tập và nâng cấp cơ chế thông báo điểm số cho sinh viên theo thời gian thực.
 #### 3. THIẾT KẾ GIAO DIỆN
 
 Hệ thống quản lý học tập
