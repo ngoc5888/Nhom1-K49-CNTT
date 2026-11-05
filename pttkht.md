@@ -31,7 +31,8 @@ Danh sách tác nhân:
 
 <img width="633" height="422" alt="image" src="https://github.com/user-attachments/assets/76cc287e-3df8-4f50-aa50-841c3412c385" />
 
-<img width="633" height="422" alt="image" src="https://github.com/user-attachments/assets/ace699fc-2b6b-489c-88be-7e20e30aac86" />
+<img width="687" height="726" alt="image" src="https://github.com/user-attachments/assets/b0c76f43-6db5-411b-abce-9db6d67a7dd3" />
+
 
 ## Phần 4: Triển khai và Kiểm thử
 
