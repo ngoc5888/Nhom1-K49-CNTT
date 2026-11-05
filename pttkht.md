@@ -24,8 +24,15 @@ Danh sách tác nhân:
 * Sinh viên (Student): Người học đăng ký/đăng nhập, xem và tham gia khóa học, học bài, tải tài liệu, làm bài tập/kiểm tra và xem kết quả.
 
 ## Phần 2: Phân tích hệ thống
-### 2. Phân rã chức năng 
-<img width="687" height="726" alt="image" src="https://github.com/user-attachments/assets/a0d222a3-24f0-4e65-a87a-4f41ae4977e0" />
+### 2.1 Sơ đồ phân rã chức năng 
+<img width="931" height="781" alt="image" src="https://github.com/user-attachments/assets/940837b8-eeba-4246-b644-b643eb4af39c" />
+
+### 2.2 Sơ đồ DFD
+
+<img width="633" height="422" alt="image" src="https://github.com/user-attachments/assets/76cc287e-3df8-4f50-aa50-841c3412c385" />
+
+<img width="633" height="422" alt="image" src="https://github.com/user-attachments/assets/ace699fc-2b6b-489c-88be-7e20e30aac86" />
+
 ## Phần 4: Triển khai và Kiểm thử
 
 ### 4.1. Môi trường triển khai
