@@ -1,44 +1,99 @@
-# Nhom1-K49-CNTT
-# HỆ THỐNG QUẢN LÝ HỌC TẬP TRỰC TUYẾN
+# 🎓 University Learning Management System (LMS)
+> **Hệ thống Quản lý Học tập Trực tuyến Chuẩn Đại học**  
+> *Nền tảng đào tạo toàn diện, phân quyền 3 cấp (Admin – Giảng viên – Sinh viên), tích hợp phân tích dữ liệu đa chiều, thông báo thời gian thực và kiểm soát hệ thống tập trung.*
 
-## Mục Lục
+---
+
+## 📌 Mục Lục
 1. [Giới thiệu Tổng quan](#-giới-thiệu-tổng-quan)
-2. [Mục tiêu](#mục-tiêu-đề-tài)
-3. [Các chức năng chính](#các-chức-năng-chính-của-hệ-thống)
-4. [Chế độ kiểm soát hệ thống](#cách-thức-kiểm-soát-hệ-thống)
-5. [Công nghệ sử dụng](#công-nghệ-áp-dụng)
-6. [Thành viên nhóm](#-phân-công-công-việc-từng-thành-viên)
-7. [Phân công công việc](#phân-công-công-việc)
+2. [Tài khoản Demo Thử nghiệm](#-tài-khoản-demo-thử-nghiệm)
+3. [Hướng dẫn Cài đặt & Khởi chạy](#-hướng-dẫn-cài-đặt--khởi-chạy)
+4. [Bộ Dữ liệu Chuẩn hóa Toàn trường](#-bộ-dữ-liệu-chuẩn-hóa-toàn-trường)
+5. [Chi tiết Chức năng theo Phân quyền](#-chi-tiết-chức-năng-theo-phân-quyền)
+   - [5.1. Quản trị viên (Admin)](#51-quản-trị-viên-admin)
+   - [5.2. Giảng viên (Teacher)](#52-giảng-viên-teacher)
+   - [5.3. Sinh viên (Student)](#53-sinh-viên-student)
+6. [Chế độ Kiểm soát Hệ thống (Bảo trì & Khóa)](#-chế-độ-kiểm-soát-hệ-thống)
+7. [Báo cáo, Thống kê & Biểu đồ Trực quan](#-báo-cáo-thống-kê--biểu-đồ-trực-quan)
 8. [Cấu trúc Thư mục Dự án](#-cấu-trúc-thư-mục-dự-án)
-9. [Trạng thái dự án](#trạng-thái-của-dự-án)
-10. [Tài khoản demo thử nghiệm](#tài-khoản-chạy-demo)
-11. [Hướng dẫn cài đặt và khởi chạy](#hướng-dẫn-cài-đặt-&-chạy-demo)
+9. [Kiểm thử & Đảm bảo Chất lượng](#-kiểm-thử--đảm-bảo-chất-lượng)
 
-## 1. Giới thiệu tổng quan
+---
 
-Dự án xây dựng hệ thống quản lý học tập trực tuyến nhằm hỗ trợ nhà trường, giảng viên và sinh viên trong quá trình tổ chức và tham gia học tập trên môi trường trực tuyến.
+## 🌟 Giới thiệu Tổng quan
+
 Hệ thống **University LMS** là giải pháp phần mềm quản lý học tập và đào tạo trực tuyến dành cho các trường đại học, cao đẳng:
 - **Giao diện hiện đại & Đồng nhất:** Thiết kế Sidebar cố định tone màu xanh Navy đậm (`#0F172A`), menu chuyển trạng thái màu tím viền dải hồng (`#EC4899`), 100% Responsive trên Mobile, Tablet và Desktop.
 - **Nghiệp vụ đào tạo chuẩn mực:** Quản lý trọn vẹn từ cơ cấu Khoa – Ngành – Môn học – Lớp sinh hoạt đến Lớp học phần, giáo trình, bài tập, thi trực tuyến và sổ điểm.
 - **Hệ thống thông báo thông minh:** Hỗ trợ Admin phát thông báo broadcast toàn trường và Giảng viên gửi thông báo chuyên biệt đến từng lớp học phần.
 - **Kiểm soát vận hành linh hoạt:** Tích hợp tính năng Bật/Tắt chế độ bảo trì và Khóa hệ thống phục vụ nâng cấp kỹ thuật mà không làm gián đoạn quyền quản trị của Admin.
-Hệ thống cho phép quản lý người dùng, khóa học, môn học, kết quả học tập, ...vv
-## 2. Mục tiêu
 
-* Xây dựng nền tảng hỗ trợ học tập trực tuyến.
-* Quản lý thông tin sinh viên và giảng viên.
-* Quản lý khóa học và môn học.
-* Cho phép giảng viên đăng tải bài giảng và tài liệu môn học.
-* Cho phép sinh viên tham gia khóa học.
-* Quản lý bài tập và bài kiểm tra.
-* Theo dõi kết quả học tập của sinh viên.
-* Hỗ trợ quản trị viên quản lý toàn bộ hệ thống.
+---
 
-## 3. Các chức năng chính
+## 🔑 Tài khoản Demo Thử nghiệm
 
-Chi tiết Chức năng theo Phân quyền
+Hệ thống được nạp sẵn dữ liệu mẫu thực tế và liên kết chặt chẽ. Đăng ký tài khoản công khai đã được đóng; tài khoản do Quản trị viên cấp phát:
 
-### 3.1. Quản trị viên (Admin)
+| Vai trò | Email đăng nhập | Mật khẩu | Quyền hạn & Chức năng chính |
+| :--- | :--- | :--- | :--- |
+| **🛡️ Quản trị viên** | `admin@example.com` | `admin123` | Toàn quyền quản trị hệ thống, quản lý tài khoản, quản lý đào tạo, bật/tắt bảo trì, khóa hệ thống, phát thông báo toàn trường, xem báo cáo & 7 biểu đồ. Không bao giờ bị chặn. |
+| **👨‍🏫 Giảng viên** | `teacher@example.com` | `teacher123` | Quản lý lớp học phần phụ trách, tải tài liệu, giao bài tập, chấm điểm, quản lý đề thi trắc nghiệm, nhập sổ điểm và gửi thông báo cho sinh viên trong lớp. |
+| **🎓 Sinh viên** | `student@example.com` | `student123` | Tham gia lớp học phần, tải tài liệu/giáo trình, nộp bài tập, làm bài thi online có đồng hồ đếm giờ, xem bảng điểm GPA và nhận thông báo. |
+
+> *(Hệ thống còn có sẵn tài khoản Giảng viên từ `teacher2@example.com` đến `teacher20@example.com` mật khẩu `teacher123` và Sinh viên từ `student2@example.com` đến `student53@example.com` mật khẩu `student123`).*
+
+---
+
+## 🚀 Hướng dẫn Cài đặt & Khởi chạy
+
+### Yêu cầu tiên quyết:
+- **Python 3.10+** (Tương thích tốt trên Python 3.11, 3.12, 3.13).
+- Trình duyệt web hiện đại (Google Chrome, Microsoft Edge, Firefox, Safari).
+
+### Các bước thực hiện:
+
+1. **Điều hướng vào thư mục dự án**:
+   ```bash
+   cd university-lms
+   ```
+
+2. **Cài đặt thư viện phụ thuộc (nếu chưa có)**:
+   ```bash
+   pip install flask werkzeug
+   ```
+
+3. **Khởi chạy ứng dụng**:
+   ```bash
+   python run.py
+   ```
+   *Khi chạy lần đầu, ứng dụng tự động kiểm tra, khởi tạo database `lms.db` và nạp toàn bộ cấu trúc dữ liệu nếu chưa có.*
+
+4. **Truy cập ứng dụng**:
+   Mở trình duyệt và truy cập: **[http://127.0.0.1:5000](http://127.0.0.1:5000)**
+
+---
+
+## 📊 Bộ Dữ liệu Chuẩn hóa Toàn trường
+
+Cơ sở dữ liệu SQLite (`lms.db`) được thiết kế theo cấu trúc quan hệ chuẩn, không phân mảnh:
+
+| Thực thể | Số lượng | Chi tiết dữ liệu |
+| :--- | :---: | :--- |
+| **Khoa (Departments)** | **10** | CNTT, Kinh tế & Tài chính, Ngoại ngữ, Sư phạm & Giáo dục, Toán học & Thống kê, Vật lý & Bán dẫn, Hóa học & Môi trường, Sinh học & CNSH, Quản trị kinh doanh, Khoa học Xã hội & Nhân văn. |
+| **Ngành (Majors)** | **10** | Kỹ thuật phần mềm, Tài chính – Ngân hàng, Ngôn ngữ Anh, Giáo dục Tiểu học, Toán ứng dụng & Khoa học DL, Vật lý kỹ thuật & Bán dẫn, Hóa dược & Vật liệu, Công nghệ sinh học, Quản trị kinh doanh, Xã hội học & Tâm lý ứng dụng. *(Mỗi ngành trực thuộc đúng 1 khoa).* |
+| **Môn học (Subjects)** | **20** | Mỗi khoa có đúng 2 môn học chuyên ngành tương ứng (WEB201, CSDL101, TCNH201, KTVI101, ENG101, ENG102, GDH101, PPGD102, MATH101, XSTK102, PHY101, VLBD102, CHEM101, HOAMT102, BIO101, CNSH102, QTKD101, MKT201, SOC101, TLH102). |
+| **Lớp học sinh hoạt** | **40** | Mỗi ngành có 4 lớp đại diện cho các khóa K20 đến K23 (Mã lớp: `LH-[MÃ_NGÀNH]-XX`). |
+| **Tài khoản Giảng viên** | **20** | Phân bổ cân đối đúng **2 giảng viên / khoa**, phụ trách giảng dạy các môn học tương ứng. |
+| **Tài khoản Sinh viên** | **53** | Bảo toàn tài khoản `student@example.com`; phân bổ đồng đều khắp 10 ngành và 40 lớp học sinh hoạt. |
+| **Năm học** | **8** | Từ 2020-2021 đến 2027-2028 (giai đoạn 8 năm theo lộ trình đào tạo đại học). |
+| **Học kỳ** | **16** | 2 học kỳ (Học kỳ 1 & Học kỳ 2) cho mỗi năm học. |
+| **Lớp học phần & Điểm** | **42 / 248** | 42 lớp học phần có giảng viên đứng lớp, sinh viên đăng ký và 248 bản ghi điểm tổng kết thực tế. |
+
+---
+
+## 🎯 Chi tiết Chức năng theo Phân quyền
+
+### 5.1. Quản trị viên (Admin)
 - **Admin Dashboard:**
   - Hiển thị đầy đủ **12 thẻ thống kê chỉ số thời gian thực**: Sinh viên (53), Giảng viên (20), Khoa (10), Ngành (10), Môn học (20), Lớp sinh hoạt (40), Lớp học phần (42), Tài khoản hoạt động, Tài khoản bị khóa, Tổng thông báo, Năm học (8), Học kỳ (16).
   - Thẻ điều khiển hệ thống nhanh: Công tắc 1-click Bật/Tắt chế độ bảo trì và Khóa hệ thống.
@@ -59,7 +114,7 @@ Chi tiết Chức năng theo Phân quyền
 - **Báo cáo & Thống kê (`/admin/reports`):**
   - Xem chi tiết tại mục 7.
 
-### 3.2. Giảng viên (Teacher)
+### 5.2. Giảng viên (Teacher)
 - **Teacher Dashboard:** Tổng quan số lớp phụ trách, tổng số sinh viên đang dạy, số bài tập đã giao và danh sách bài nộp đang chờ chấm.
 - **Lớp học phần (`/teacher/classes`):** Xem danh mục các lớp được phân công, sĩ số sinh viên và thông tin lịch học.
 - **Tài liệu & Học liệu (`/teacher/materials`):** Upload tài liệu/bài giảng theo từng môn học, hỗ trợ đa dạng định dạng (PDF, Word, PowerPoint, Video, Zip...).
@@ -76,7 +131,7 @@ Chi tiết Chức năng theo Phân quyền
   - Chọn lớp học phần mình đang giảng dạy, soạn thảo tiêu đề và nội dung thông báo.
   - Hệ thống tự động phân phối thông báo đến hòm thư của tất cả sinh viên đã đăng ký vào lớp học phần đó.
 
-### 3.3. Sinh viên (Student)
+### 5.3. Sinh viên (Student)
 - **Student Dashboard:** Thẻ thống kê số lớp tham gia, tiến độ học tập, bài tập cần nộp, bài thi sắp tới và điểm trung bình tích lũy (GPA).
 - **Lớp học phần (`/student/classes`):** Chi tiết lớp học phần, thông tin giảng viên, tài liệu môn học và danh sách bạn cùng lớp.
 - **Tài liệu & Học liệu (`/student/materials`):** Tìm kiếm, lọc và tải xuống giáo trình, bài giảng, tài liệu tham khảo theo môn học.
@@ -87,7 +142,9 @@ Chi tiết Chức năng theo Phân quyền
 - **Kết quả Học tập (`/student/academic-results`):** Tra cứu bảng điểm chi tiết các môn, điểm chuyên cần, điểm giữa kỳ, điểm cuối kỳ, điểm tổng kết và xếp loại học lực.
 - **Hộp thư Thông báo (`/notifications`):** Nhận thông báo từ Nhà trường (Admin) và thông báo từ Giảng viên các lớp học phần.
 
-## 4.Chế độ Kiểm soát Hệ thống
+---
+
+## 🔒 Chế độ Kiểm soát Hệ thống
 
 Được quản lý thông qua bảng cấu hình `system_settings` và hook kiểm tra tập trung `@app.before_request`:
 
@@ -125,18 +182,18 @@ flowchart TD
 
 ---
 
-### 3.Báo cáo, Thống kê & Biểu đồ Trực quan
+## 📈 Báo cáo, Thống kê & Biểu đồ Trực quan
 
-### .Trang **Báo cáo – Thống kê** (`/admin/reports`) cung cấp trung tâm phân tích dữ liệu chuyên sâu:
+Trang **Báo cáo – Thống kê** (`/admin/reports`) cung cấp trung tâm phân tích dữ liệu chuyên sâu:
 
-#### 1. Bộ lọc Đa điều kiện (Multi-filter)
+### 1. Bộ lọc Đa điều kiện (Multi-filter)
 Cho phép lọc kết hợp linh hoạt:
 - **Năm học:** Lọc theo từng năm học từ 2020-2021 đến 2027-2028 hoặc Tất cả các năm.
 - **Học kỳ:** Học kỳ 1, Học kỳ 2 hoặc Tất cả học kỳ.
 - **Khoa:** Chọn 1 trong 10 khoa hoặc Toàn bộ các khoa.
 - **Ngành học:** Chọn 1 trong 10 ngành hoặc Toàn bộ các ngành.
 
-#### 2. Thống kê Chi tiết 5 Nhóm A – E
+### 2. Thống kê Chi tiết 5 Nhóm A – E
 - **Nhóm A (Sinh viên):** Tổng sinh viên sau lọc, phân bổ qua 10 khoa, 10 ngành và số lớp sinh hoạt.
 - **Nhóm B (Giảng viên):** Tổng giảng viên sau lọc, phân bổ 2 GV/khoa, số môn học và lớp học phần phụ trách.
 - **Nhóm C (Môn học):** Tổng số môn học, số môn/khoa (2 môn), số môn/ngành và số tín chỉ trung bình.
@@ -146,47 +203,22 @@ Cho phép lọc kết hợp linh hoạt:
   - Tỷ lệ đạt ($\ge 5.0$) và Tỷ lệ trượt ($< 5.0$).
   - Phân loại học lực: **Xuất sắc** ($A \ge 8.5$), **Giỏi** ($B: 7.0 - 8.4$), **Khá** ($C: 5.5 - 6.9$), **Trung bình** ($D: 4.0 - 5.4$), **Yếu / Kém** ($F < 4.0$).
 
-#### 3. Hệ thống 7 Biểu đồ Chart.js Trực quan
-1. **Biểu đồ cột:** Số lượng sinh viên theo từng khoa (10 khoa).
-2. **Biểu đồ cột:** Số lượng sinh viên theo từng ngành đào tạo (10 ngành).
-3. **Biểu đồ đường (Line):** Số lượng sinh viên tham gia học tập theo từng năm học (2020 – 2028).
-4. **Biểu đồ cột:** Số lượng giảng viên theo từng khoa (chuẩn hóa 2 GV/khoa).
-5. **Biểu đồ tròn (Doughnut):** Tỷ lệ phân bố sinh viên giữa các khoa toàn trường.
-6. **Biểu đồ cột:** Số lượng lớp học sinh hoạt theo từng khoa (4 lớp/khoa).
-7. **Biểu đồ cột đa kỳ:** Thống kê số lượng sinh viên học tập theo từng học kỳ (16 học kỳ).
+### 3. Hệ thống 7 Biểu đồ Chart.js Trực quan
+1. 📊 **Biểu đồ cột:** Số lượng sinh viên theo từng khoa (10 khoa).
+2. 📊 **Biểu đồ cột:** Số lượng sinh viên theo từng ngành đào tạo (10 ngành).
+3. 📈 **Biểu đồ đường (Line):** Số lượng sinh viên tham gia học tập theo từng năm học (2020 – 2028).
+4. 📊 **Biểu đồ cột:** Số lượng giảng viên theo từng khoa (chuẩn hóa 2 GV/khoa).
+5. 🍩 **Biểu đồ tròn (Doughnut):** Tỷ lệ phân bố sinh viên giữa các khoa toàn trường.
+6. 📊 **Biểu đồ cột:** Số lượng lớp học sinh hoạt theo từng khoa (4 lớp/khoa).
+7. 📊 **Biểu đồ cột đa kỳ:** Thống kê số lượng sinh viên học tập theo từng học kỳ (16 học kỳ).
 
-#### 4. Xuất Báo cáo CSV Chuẩn Excel
+### 4. Xuất Báo cáo CSV Chuẩn Excel
 - Nút **[ Xuất Báo Cáo CSV ]** xuất toàn bộ bảng dữ liệu kết quả học tập theo đúng tiêu chí lọc hiện tại.
 - File CSV được tích hợp tiền tố UTF-8 BOM (`\ufeff`), mở tiếng Việt có dấu hoàn hảo trên Microsoft Excel.
-## 5. Công nghệ sử dụng
 
-* Frontend: HTML, CSS, JavaScript
-* Backend: [ASP.NET Core / Java Spring Boot / Node.js / Python Flask]
-* Database: SQL Server / MySQL
-* Công cụ phát triển: Visual Studio Code
-* Quản lý mã nguồn: Git và GitHub
+---
 
-## 6. Thành viên nhóm
-
-| STT | Họ và tên          | Vai trò                 | Branch           |
-| --- | ------------       | ----------------------- | ---------------- |
-| 1   | Hoàng Anh Tuấn     | Nhóm trưởng / Backend   | feature/backend  |
-| 2   | Nguyễn Bảo Ngọc    | Frontend                | feature/frontend |
-| 3   | Nguyễn Thu Hà      | Database                | feature/database |
-| 4   | Nguyễn Trang Nhung | Testing / Documentation | feature/testing  |
-| 5   | Khuất Duy Hải      | Testing / Documentation | feature/testing  |
-
-## 7. Phân công công việc
-
-| Thành viên         | Công việc                                        |
-| ------------       | ------------------------------------------------ |
-| Hoàng Anh Tuấn     | Quản lý dự án, Backend, tích hợp hệ thống        |
-| Nguyễn Bảo Ngọc    | Thiết kế giao diện và Frontend                   |
-| Nguyễn Thu Hà      | Phân tích và thiết kế cơ sở dữ liệu              |
-| Nguyễn Trang Nhung | Kiểm thử, tài liệu và hỗ trợ hoàn thiện hệ thống |
-| Khuất Duy Hải      | Kiểm thử, tài liệu và hỗ trợ hoàn thiện hệ thống |
-
-## 8. Cấu trúc dự án
+## 📁 Cấu trúc Thư mục Dự án
 
 ```text
 university-lms/
@@ -247,9 +279,9 @@ university-lms/
 └── README.md                       # Tài liệu hướng dẫn và đặc tả hệ thống
 ```
 
-## 9. Trạng thái dự án
+---
 
-Kiểm thử & Đảm bảo Chất lượng
+## 🧪 Kiểm thử & Đảm bảo Chất lượng
 
 Hệ thống được trang bị bộ kiểm thử tự động toàn diện:
 
@@ -257,64 +289,24 @@ Hệ thống được trang bị bộ kiểm thử tự động toàn diện:
 ```bash
 python app/verify_system.py
 ```
--  Kiểm tra tính toàn vẹn của 10 Khoa, 10 Ngành, 20 Môn, 40 Lớp SH, 20 Giảng viên, 53 Sinh viên, 8 Năm học, 16 Học kỳ.
--  Kiểm tra bảo toàn các tài khoản quản trị và học tập mặc định.
--  Kiểm tra đăng nhập, Admin Dashboard, Báo cáo thống kê, 7 biểu đồ và xuất CSV.
--  Kiểm tra Admin phát thông báo broadcast toàn trường thành công.
--  Kiểm tra Giảng viên phát thông báo theo lớp học phần thành công.
--  Kiểm tra Sinh viên nhận đúng thông báo từ Admin và Giảng viên.
--  Kiểm tra Chế độ Bảo trì: Chặn đúng Sinh viên/Giảng viên, Admin không bị chặn, tự động tạo thông báo.
--  Kiểm tra Khóa Hệ thống: Chặn đúng Sinh viên/Giảng viên, Admin không bị chặn, tự động tạo thông báo.
+- ✅ Kiểm tra tính toàn vẹn của 10 Khoa, 10 Ngành, 20 Môn, 40 Lớp SH, 20 Giảng viên, 53 Sinh viên, 8 Năm học, 16 Học kỳ.
+- ✅ Kiểm tra bảo toàn các tài khoản quản trị và học tập mặc định.
+- ✅ Kiểm tra đăng nhập, Admin Dashboard, Báo cáo thống kê, 7 biểu đồ và xuất CSV.
+- ✅ Kiểm tra Admin phát thông báo broadcast toàn trường thành công.
+- ✅ Kiểm tra Giảng viên phát thông báo theo lớp học phần thành công.
+- ✅ Kiểm tra Sinh viên nhận đúng thông báo từ Admin và Giảng viên.
+- ✅ Kiểm tra Chế độ Bảo trì: Chặn đúng Sinh viên/Giảng viên, Admin không bị chặn, tự động tạo thông báo.
+- ✅ Kiểm tra Khóa Hệ thống: Chặn đúng Sinh viên/Giảng viên, Admin không bị chặn, tự động tạo thông báo.
 
 ### 2. Kiểm thử Hồi quy 27 Routes (`test_full_suite.py`):
 ```bash
 python app/test_full_suite.py
 ```
--  100% các endpoint Sinh viên, Giảng viên, Admin, Thông báo, Hồ sơ, Đăng nhập, Bảo trì đều phản hồi mã `200 OK`.
+- ✅ 100% các endpoint Sinh viên, Giảng viên, Admin, Thông báo, Hồ sơ, Đăng nhập, Bảo trì đều phản hồi mã `200 OK`.
 
 ---
 
 ## 🛡️ Bản quyền & Phát triển
 - **Đại học Công nghệ – Hệ thống Quản lý Học tập LMS**
 - Phiên bản: `2.0 PRO`
-
-## 10.Tài khoản Demo Thử nghiệm
-
-Hệ thống được nạp sẵn dữ liệu mẫu thực tế và liên kết chặt chẽ. Đăng ký tài khoản công khai đã được đóng; tài khoản do Quản trị viên cấp phát:
-
-| Vai trò | Email đăng nhập | Mật khẩu | Quyền hạn & Chức năng chính |
-| :--- | :--- | :--- | :--- |
-| **🛡️ Quản trị viên** | `admin@example.com` | `admin123` | Toàn quyền quản trị hệ thống, quản lý tài khoản, quản lý đào tạo, bật/tắt bảo trì, khóa hệ thống, phát thông báo toàn trường, xem báo cáo & 7 biểu đồ. Không bao giờ bị chặn. |
-| **👨‍🏫 Giảng viên** | `teacher@example.com` | `teacher123` | Quản lý lớp học phần phụ trách, tải tài liệu, giao bài tập, chấm điểm, quản lý đề thi trắc nghiệm, nhập sổ điểm và gửi thông báo cho sinh viên trong lớp. |
-| **🎓 Sinh viên** | `student@example.com` | `student123` | Tham gia lớp học phần, tải tài liệu/giáo trình, nộp bài tập, làm bài thi online có đồng hồ đếm giờ, xem bảng điểm GPA và nhận thông báo. |
-
-> *(Hệ thống còn có sẵn tài khoản Giảng viên từ `teacher2@example.com` đến `teacher20@example.com` mật khẩu `teacher123` và Sinh viên từ `student2@example.com` đến `student53@example.com` mật khẩu `student123`).*
-
----
-
-## 11.Hướng dẫn Cài đặt & Khởi chạy
-
-### Yêu cầu tiên quyết:
-- **Python 3.10+** (Tương thích tốt trên Python 3.11, 3.12, 3.13).
-- Trình duyệt web hiện đại (Google Chrome, Microsoft Edge, Firefox, Safari).
-
-### Các bước thực hiện:
-
-1. **Điều hướng vào thư mục dự án**:
-   ```bash
-   cd university-lms
-   ```
-
-2. **Cài đặt thư viện phụ thuộc (nếu chưa có)**:
-   ```bash
-   pip install flask werkzeug
-   ```
-
-3. **Khởi chạy ứng dụng**:
-   ```bash
-   python run.py
-   ```
-   *Khi chạy lần đầu, ứng dụng tự động kiểm tra, khởi tạo database `lms.db` và nạp toàn bộ cấu trúc dữ liệu nếu chưa có.*
-
-4. **Truy cập ứng dụng**:
-   Mở trình duyệt và truy cập: **[http://127.0.0.1:5000](http://127.0.0.1:5000)**
+- Nền tảng: Python Flask / SQLite / Tailwind CSS / Chart.js
