@@ -310,3 +310,34 @@ python app/test_full_suite.py
 - **Đại học Công nghệ – Hệ thống Quản lý Học tập LMS**
 - Phiên bản: `2.0 PRO`
 - Nền tảng: Python Flask / SQLite / Tailwind CSS / Chart.js
+
+
+ước 1: Mở cổng 5000 trên Windows Defender Firewall
+
+Mặc định tường lửa của Windows sẽ chặn các kết nối từ thiết bị khác vào máy bạn. Bạn cần mở cổng 5000 một lần duy nhất theo 1 trong 2 cách sau:
+
+Cách nhanh nhất (Tự động): Nhấp đúp chuột vào file open_firewall_port5000.bat (khi máy hỏi quyền Administrator / UAC, chọn Yes).
+Hoặc dùng lệnh PowerShell: Mở PowerShell với quyền Run as Administrator và chạy lệnh:
+powershell
+netsh advfirewall firewall add rule name="University LMS (Port 5000)" dir=in action=allow protocol=TCP localport=5000 profile=any
+Bước 2: Khởi động hệ thống LMS
+
+Chạy file start.bat hoặc chạy lệnh trong terminal:
+
+bash
+python run.py
+
+Màn hình console sẽ hiển thị thông tin truy cập:
+
+text
+==================================================
+   UNIVERSITY LMS SERVER ĐANG HOẠT ĐỘNG
+ - Cục bộ trên máy (Local):       http://127.0.0.1:5000
+ - Mạng nội bộ LAN / Wi-Fi:        http://192.168.1.13:5000
+==================================================
+Bước 3: Truy cập từ các thiết bị khác
+Trên điện thoại, laptop của sinh viên hoặc giáo viên đang bắt cùng mạng Wi-Fi, mở trình duyệt (Chrome, Safari, Edge) và gõ:
+text
+http://192.168.1.13:5000
+(Thay 192.168.1.13 bằng địa chỉ IP máy chủ hiển thị trên màn hình nếu bạn đổi mạng).
+Sinh viên có thể nhập trực tiếp Email (ví dụ: dovietanh@hpu2.edu.vn) hoặc Mã SV (ví dụ: K49CNTT01) với mật khẩu mặc định 123456 để vào học.
