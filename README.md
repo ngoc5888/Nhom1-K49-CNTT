@@ -311,8 +311,8 @@ python app/test_full_suite.py
 - Phiên bản: `2.0 PRO`
 - Nền tảng: Python Flask / SQLite / Tailwind CSS / Chart.js
 
-
-ước 1: Mở cổng 5000 trên Windows Defender Firewall
+TRUY CẬP QUA MẠNG NỘI BỘ LAN / WI-FI
+Bước 1: Mở cổng 5000 trên Windows Defender Firewall
 
 Mặc định tường lửa của Windows sẽ chặn các kết nối từ thiết bị khác vào máy bạn. Bạn cần mở cổng 5000 một lần duy nhất theo 1 trong 2 cách sau:
 
@@ -329,7 +329,6 @@ python run.py
 
 Màn hình console sẽ hiển thị thông tin truy cập:
 
-text
 ==================================================
    UNIVERSITY LMS SERVER ĐANG HOẠT ĐỘNG
  - Cục bộ trên máy (Local):       http://127.0.0.1:5000
