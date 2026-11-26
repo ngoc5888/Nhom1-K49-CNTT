@@ -1,0 +1,598 @@
+{% extends "base.html" %}
+
+{% block title %}Báo Cáo & Thống Kê - University LMS{% endblock %}
+{% block header_title %}Báo Cáo & Thống Kê Tổng Hợp Toàn Trường{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+
+    <!-- Top Banner -->
+    <div class="p-6 lg:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 border border-slate-800 relative overflow-hidden">
+        <div class="space-y-2 z-10">
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
+                📊 TRUNG TÂM PHÂN TÍCH & BÁO CÁO LMS
+            </div>
+            <h1 class="text-2xl lg:text-3xl font-extrabold tracking-tight">Thống Kê & Báo Cáo Toàn Trường</h1>
+            <p class="text-slate-300 text-xs sm:text-sm max-w-xl">
+                Báo cáo tổng hợp số liệu sinh viên, giảng viên, chương trình đào tạo và kết quả học tập với bộ lọc đa chiều và trực quan hóa Chart.js.
+            </p>
+        </div>
+
+        <div class="flex items-center space-x-3 z-10 shrink-0">
+            <a href="{{ url_for('admin_bp.reports', export='csv', academic_year=current_year, semester=current_semester, department_id=current_dept, major_id=current_major) }}" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-emerald-600/30 transition-all flex items-center space-x-2">
+                <i class="fa-solid fa-file-csv text-sm"></i>
+                <span>Xuất Báo Cáo CSV</span>
+            </a>
+            <button onclick="window.print()" class="px-4 py-2.5 bg-slate-800/80 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-700 transition-all flex items-center space-x-2">
+                <i class="fa-solid fa-print"></i>
+                <span>In Báo Cáo</span>
+            </button>
+        </div>
+
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    </div>
+
+    <!-- Multi-Filter Card (Section XV) -->
+    <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm">
+        <form method="GET" action="{{ url_for('admin_bp.reports') }}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 items-end">
+            <!-- 1. Năm học -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-calendar-days text-purple-600"></i> Năm học
+                </label>
+                <select name="academic_year" class="w-full text-xs rounded-xl border-slate-200 focus:ring-purple-500 focus:border-purple-500 py-2.5 px-3 bg-slate-50 border">
+                    <option value="">-- Tất cả năm học --</option>
+                    {% for y in academic_years %}
+                        <option value="{{ y.code }}" {% if current_year == y.code %}selected{% endif %}>{{ y.name }} ({{ y.code }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- 2. Học kỳ -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-clock-rotate-left text-pink-600"></i> Học kỳ
+                </label>
+                <select name="semester" class="w-full text-xs rounded-xl border-slate-200 focus:ring-purple-500 focus:border-purple-500 py-2.5 px-3 bg-slate-50 border">
+                    <option value="">-- Tất cả học kỳ --</option>
+                    <option value="Học kỳ 1" {% if current_semester == 'Học kỳ 1' %}selected{% endif %}>Học kỳ 1 (HK1)</option>
+                    <option value="Học kỳ 2" {% if current_semester == 'Học kỳ 2' %}selected{% endif %}>Học kỳ 2 (HK2)</option>
+                </select>
+            </div>
+
+            <!-- 3. Khoa -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-building-columns text-sky-600"></i> Khoa
+                </label>
+                <select name="department_id" class="w-full text-xs rounded-xl border-slate-200 focus:ring-purple-500 focus:border-purple-500 py-2.5 px-3 bg-slate-50 border">
+                    <option value="">-- Tất cả các khoa (10) --</option>
+                    {% for d in departments %}
+                        <option value="{{ d.id }}" {% if current_dept == d.id|string %}selected{% endif %}>{{ d.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- 4. Ngành -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <i class="fa-solid fa-diagram-project text-indigo-600"></i> Ngành học
+                </label>
+                <select name="major_id" class="w-full text-xs rounded-xl border-slate-200 focus:ring-purple-500 focus:border-purple-500 py-2.5 px-3 bg-slate-50 border">
+                    <option value="">-- Tất cả các ngành (10) --</option>
+                    {% for m in majors %}
+                        <option value="{{ m.id }}" {% if current_major == m.id|string %}selected{% endif %}>{{ m.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Submit & Reset Buttons -->
+            <div class="flex gap-2">
+                <button type="submit" class="flex-1 py-2.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/20 flex items-center justify-center space-x-1.5 transition-all">
+                    <i class="fa-solid fa-filter"></i>
+                    <span>Lọc Dữ Liệu</span>
+                </button>
+                <a href="{{ url_for('admin_bp.reports') }}" class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold border border-slate-200 flex items-center justify-center" title="Đặt lại bộ lọc">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Detailed Statistics 5 Categories A - E (Requirement XV) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+
+        <!-- Category A: Sinh viên -->
+        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-xs font-black text-pink-600 uppercase tracking-wider">A. Sinh Viên</span>
+                <span class="w-7 h-7 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center text-xs"><i class="fa-solid fa-user-graduate"></i></span>
+            </div>
+            <div>
+                <p class="text-2xl font-black text-slate-900">{{ total_students_count }}</p>
+                <p class="text-[11px] text-slate-400 font-medium">Tổng sinh viên lọc</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 space-y-1 text-[11px] text-slate-600">
+                <div class="flex justify-between"><span>Theo 10 Khoa:</span><span class="font-bold text-slate-900">100% phân bổ</span></div>
+                <div class="flex justify-between"><span>Theo 10 Ngành:</span><span class="font-bold text-slate-900">100% có SV</span></div>
+                <div class="flex justify-between"><span>Lớp sinh hoạt:</span><span class="font-bold text-slate-900">{{ total_classes_count }} lớp</span></div>
+            </div>
+        </div>
+
+        <!-- Category B: Giảng viên -->
+        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-xs font-black text-purple-600 uppercase tracking-wider">B. Giảng Viên</span>
+                <span class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-xs"><i class="fa-solid fa-chalkboard-user"></i></span>
+            </div>
+            <div>
+                <p class="text-2xl font-black text-slate-900">{{ total_teachers_count }}</p>
+                <p class="text-[11px] text-slate-400 font-medium">Tổng giảng viên lọc</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 space-y-1 text-[11px] text-slate-600">
+                <div class="flex justify-between"><span>Theo Khoa:</span><span class="font-bold text-slate-900">2 GV / Khoa</span></div>
+                <div class="flex justify-between"><span>Môn phụ trách:</span><span class="font-bold text-slate-900">{{ total_subjects_count }} môn</span></div>
+                <div class="flex justify-between"><span>Lớp HP phụ trách:</span><span class="font-bold text-slate-900">{{ total_courses_count }} lớp HP</span></div>
+            </div>
+        </div>
+
+        <!-- Category C: Môn học -->
+        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-xs font-black text-indigo-600 uppercase tracking-wider">C. Môn Học</span>
+                <span class="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs"><i class="fa-solid fa-graduation-cap"></i></span>
+            </div>
+            <div>
+                <p class="text-2xl font-black text-slate-900">{{ total_subjects_count }}</p>
+                <p class="text-[11px] text-slate-400 font-medium">Tổng môn học lọc</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 space-y-1 text-[11px] text-slate-600">
+                <div class="flex justify-between"><span>Số môn/khoa:</span><span class="font-bold text-slate-900">2 môn/khoa</span></div>
+                <div class="flex justify-between"><span>Số môn/ngành:</span><span class="font-bold text-slate-900">2 môn/ngành</span></div>
+                <div class="flex justify-between"><span>Tín chỉ TB:</span><span class="font-bold text-indigo-600">{{ avg_credits }} tín chỉ</span></div>
+            </div>
+        </div>
+
+        <!-- Category D: Lớp học -->
+        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-xs font-black text-sky-600 uppercase tracking-wider">D. Lớp Học</span>
+                <span class="w-7 h-7 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center text-xs"><i class="fa-solid fa-users-line"></i></span>
+            </div>
+            <div>
+                <p class="text-2xl font-black text-slate-900">{{ total_classes_count }}</p>
+                <p class="text-[11px] text-slate-400 font-medium">Lớp sinh hoạt lọc</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 space-y-1 text-[11px] text-slate-600">
+                <div class="flex justify-between"><span>Lớp học phần:</span><span class="font-bold text-sky-600">{{ total_courses_count }} lớp</span></div>
+                <div class="flex justify-between"><span>Lớp theo khoa:</span><span class="font-bold text-slate-900">4 lớp/khoa</span></div>
+                <div class="flex justify-between"><span>Lớp theo ngành:</span><span class="font-bold text-slate-900">4 lớp/ngành</span></div>
+            </div>
+        </div>
+
+        <!-- Category E: Kết quả học tập -->
+        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-xs font-black text-emerald-600 uppercase tracking-wider">E. Kết Quả Học Tập</span>
+                <span class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs"><i class="fa-solid fa-chart-simple"></i></span>
+            </div>
+            <div>
+                <p class="text-2xl font-black text-emerald-600">{{ avg_gpa }} <span class="text-xs font-medium text-slate-400">/ 10</span></p>
+                <p class="text-[11px] text-slate-400 font-medium">Điểm TB toàn trường</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 space-y-1 text-[11px] text-slate-600">
+                <div class="flex justify-between"><span>Tỷ lệ đạt (≥5.0):</span><span class="font-bold text-emerald-600">{{ pass_rate }}% ({{ passed_count }})</span></div>
+                <div class="flex justify-between"><span>Tỷ lệ trượt (<5.0):</span><span class="font-bold text-rose-600">{{ fail_rate }}% ({{ failed_count }})</span></div>
+                <div class="flex justify-between"><span>Tổng bản ghi điểm:</span><span class="font-bold text-slate-900">{{ total_grades_count }} lượt</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Grade Rank Classification Badges (Category E Detail) -->
+    <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-award text-amber-500"></i> Phân loại học lực sinh viên theo thang điểm
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-emerald-700 uppercase">Xuất sắc (A / ≥8.5)</p>
+                    <p class="text-lg font-black text-emerald-700 mt-0.5">{{ rank_excellent }}</p>
+                </div>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-800">A</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-blue-700 uppercase">Giỏi (B / 7.0 - 8.4)</p>
+                    <p class="text-lg font-black text-blue-700 mt-0.5">{{ rank_good }}</p>
+                </div>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-200 text-blue-800">B</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-amber-700 uppercase">Khá (C / 5.5 - 6.9)</p>
+                    <p class="text-lg font-black text-amber-700 mt-0.5">{{ rank_fair }}</p>
+                </div>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-200 text-amber-800">C</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-orange-700 uppercase">Trung bình (D / 4.0 - 5.4)</p>
+                    <p class="text-lg font-black text-orange-700 mt-0.5">{{ rank_average }}</p>
+                </div>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-orange-200 text-orange-800">D</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-rose-50 border border-rose-100 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-rose-700 uppercase">Yếu / Kém (F / <4.0)</p>
+                    <p class="text-lg font-black text-rose-700 mt-0.5">{{ rank_poor }}</p>
+                </div>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-rose-200 text-rose-800">F</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7 Visual Charts Section (Requirement XVI) -->
+    <div class="space-y-4">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-base font-extrabold text-slate-900">Biểu Đồ Trực Quan Hóa Dữ Liệu</h2>
+                <p class="text-xs text-slate-500">7 biểu đồ Chart.js thống kê đa chiều theo khoa, ngành, năm học và học kỳ</p>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-bold border border-purple-200/60">
+                7 Biểu đồ hoạt động
+            </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- Chart 1: Số lượng sinh viên theo khoa (Bar) -->
+            <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h3 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-column text-pink-600"></i> 1. Số lượng sinh viên theo khoa
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-semibold">Cột (Bar)</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="chart1"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Số lượng sinh viên theo ngành (Bar) -->
+            <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h3 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-column text-purple-600"></i> 2. Số lượng sinh viên theo ngành
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-semibold">Cột (Bar)</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="chart2"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 3: Số lượng sinh viên theo từng năm học (Line / Bar) -->
+            <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h3 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-line text-indigo-600"></i> 3. Số lượng sinh viên theo từng năm học
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-semibold">Đường (Line)</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="chart3"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 4: Số lượng giảng viên theo từng khoa (Bar) -->
+            <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h3 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-column text-teal-600"></i> 4. Số lượng giảng viên theo từng khoa
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-semibold">Cột (Bar)</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="chart4"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 5: Tỷ lệ phân bố sinh viên theo khoa (Doughnut) -->
+            <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h3 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-pie text-amber-600"></i> 5. Tỷ lệ phân bố sinh viên theo khoa
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-semibold">Tròn (Doughnut)</span>
+                </div>
+                <div class="h-64 flex items-center justify-center">
+                    <canvas id="chart5"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 6: Số lượng lớp học theo từng khoa (Bar) -->
+            <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h3 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-column text-cyan-600"></i> 6. Số lượng lớp học theo từng khoa
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-semibold">Cột (Bar)</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="chart6"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 7: Thống kê số lượng sinh viên theo học kỳ (Bar full width) -->
+            <div class="lg:col-span-2 bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h3 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-column text-fuchsia-600"></i> 7. Thống kê số lượng sinh viên theo từng học kỳ (16 Học kỳ)
+                    </h3>
+                    <span class="text-[10px] text-slate-400 font-semibold">Cột đa kỳ (Bar)</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="chart7"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Data Table of Filtered Grades & Academic Results (Section XVII) -->
+    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden space-y-4 p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+            <div>
+                <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-table-list text-purple-600"></i> Bảng Dữ Liệu Kết Quả Học Tập Chi Tiết
+                </h3>
+                <p class="text-xs text-slate-500">Hiển thị theo điều kiện lọc hiện tại ({{ filtered_grades|length }} bản ghi)</p>
+            </div>
+            <a href="{{ url_for('admin_bp.reports', export='csv', academic_year=current_year, semester=current_semester, department_id=current_dept, major_id=current_major) }}" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center space-x-1.5 shrink-0">
+                <i class="fa-solid fa-file-csv"></i>
+                <span>Xuất file CSV này</span>
+            </a>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                    <tr class="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 bg-slate-50/70">
+                        <th class="py-3 px-3">Mã SV</th>
+                        <th class="py-3 px-3">Họ và Tên</th>
+                        <th class="py-3 px-3">Khoa</th>
+                        <th class="py-3 px-3">Ngành</th>
+                        <th class="py-3 px-3">Năm học & Học kỳ</th>
+                        <th class="py-3 px-3">Lớp học phần</th>
+                        <th class="py-3 px-3 text-center">Điểm Tổng kết</th>
+                        <th class="py-3 px-3 text-center">Xếp loại</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    {% for r in filtered_grades %}
+                    <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3 px-3 font-mono font-bold text-purple-700">{{ r.student_code or 'SV2024' }}</td>
+                        <td class="py-3 px-3 font-semibold text-slate-900">{{ r.full_name }}</td>
+                        <td class="py-3 px-3 text-slate-600">{{ r.dept_name }}</td>
+                        <td class="py-3 px-3 text-slate-600">{{ r.major_name }}</td>
+                        <td class="py-3 px-3 text-slate-500">
+                            <span class="font-medium text-slate-700">{{ r.academic_year }}</span>
+                            <span class="block text-[10px] text-slate-400">{{ r.semester }}</span>
+                        </td>
+                        <td class="py-3 px-3 text-slate-700 font-medium">{{ r.course_name }}</td>
+                        <td class="py-3 px-3 text-center font-black font-mono text-sm {% if r.total_score >= 8.5 %}text-emerald-600{% elif r.total_score >= 5.0 %}text-indigo-600{% else %}text-rose-600{% endif %}">
+                            {{ r.total_score }}
+                        </td>
+                        <td class="py-3 px-3 text-center">
+                            {% if r.total_score >= 8.5 %}
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800">
+                                    {{ r.letter_grade }} (Xuất sắc)
+                                </span>
+                            {% elif r.total_score >= 7.0 %}
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-blue-100 text-blue-800">
+                                    {{ r.letter_grade }} (Giỏi)
+                                </span>
+                            {% elif r.total_score >= 5.5 %}
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-100 text-amber-800">
+                                    {{ r.letter_grade }} (Khá)
+                                </span>
+                            {% elif r.total_score >= 4.0 %}
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-orange-100 text-orange-800">
+                                    {{ r.letter_grade }} (Trung bình)
+                                </span>
+                            {% else %}
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-100 text-rose-800">
+                                    {{ r.letter_grade }} (Yếu/Kém)
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="8" class="py-10 text-center text-slate-400">
+                            <i class="fa-solid fa-inbox text-3xl mb-2 text-slate-300"></i>
+                            <p>Không tìm thấy kết quả học tập phù hợp với bộ lọc đã chọn.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Chart.js Initializations for all 7 Visual Charts -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const palette = [
+            '#ec4899', '#8b5cf6', '#3b82f6', '#06b6d4', '#10b981',
+            '#f59e0b', '#ef4444', '#6366f1', '#14b8a6', '#f97316'
+        ];
+
+        // 1. Chart 1: SV theo khoa (Bar)
+        new Chart(document.getElementById('chart1'), {
+            type: 'bar',
+            data: {
+                labels: {{ chart1_labels|tojson }},
+                datasets: [{
+                    label: 'Số lượng sinh viên',
+                    data: {{ chart1_data|tojson }},
+                    backgroundColor: '#ec4899',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { font: { size: 9 }, maxRotation: 35 } },
+                    y: { beginAtZero: true, ticks: { stepSize: 2 } }
+                }
+            }
+        });
+
+        // 2. Chart 2: SV theo ngành (Bar)
+        new Chart(document.getElementById('chart2'), {
+            type: 'bar',
+            data: {
+                labels: {{ chart2_labels|tojson }},
+                datasets: [{
+                    label: 'Số lượng sinh viên',
+                    data: {{ chart2_data|tojson }},
+                    backgroundColor: '#8b5cf6',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { font: { size: 9 }, maxRotation: 35 } },
+                    y: { beginAtZero: true, ticks: { stepSize: 2 } }
+                }
+            }
+        });
+
+        // 3. Chart 3: SV theo năm học (Line)
+        new Chart(document.getElementById('chart3'), {
+            type: 'line',
+            data: {
+                labels: {{ chart3_labels|tojson }},
+                datasets: [{
+                    label: 'Số lượng sinh viên tham gia',
+                    data: {{ chart3_data|tojson }},
+                    borderColor: '#6366f1',
+                    backgroundColor: 'rgba(99, 102, 241, 0.15)',
+                    tension: 0.35,
+                    fill: true,
+                    pointBackgroundColor: '#6366f1',
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { ticks: { font: { size: 9 } } },
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // 4. Chart 4: GV theo khoa (Bar)
+        new Chart(document.getElementById('chart4'), {
+            type: 'bar',
+            data: {
+                labels: {{ chart4_labels|tojson }},
+                datasets: [{
+                    label: 'Số lượng giảng viên',
+                    data: {{ chart4_data|tojson }},
+                    backgroundColor: '#14b8a6',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { font: { size: 9 }, maxRotation: 35 } },
+                    y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                }
+            }
+        });
+
+        // 5. Chart 5: Phân bố SV theo khoa (Doughnut)
+        new Chart(document.getElementById('chart5'), {
+            type: 'doughnut',
+            data: {
+                labels: {{ chart5_labels|tojson }},
+                datasets: [{
+                    data: {{ chart5_data|tojson }},
+                    backgroundColor: palette
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { boxWidth: 10, font: { size: 9 } }
+                    }
+                }
+            }
+        });
+
+        // 6. Chart 6: Số lượng lớp theo khoa (Bar)
+        new Chart(document.getElementById('chart6'), {
+            type: 'bar',
+            data: {
+                labels: {{ chart6_labels|tojson }},
+                datasets: [{
+                    label: 'Số lượng lớp sinh hoạt',
+                    data: {{ chart6_data|tojson }},
+                    backgroundColor: '#06b6d4',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { font: { size: 9 }, maxRotation: 35 } },
+                    y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                }
+            }
+        });
+
+        // 7. Chart 7: Thống kê SV theo học kỳ (Bar)
+        new Chart(document.getElementById('chart7'), {
+            type: 'bar',
+            data: {
+                labels: {{ chart7_labels|tojson }},
+                datasets: [{
+                    label: 'Số lượng sinh viên học kỳ',
+                    data: {{ chart7_data|tojson }},
+                    backgroundColor: '#d946ef',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { ticks: { font: { size: 8 }, maxRotation: 45 } },
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
